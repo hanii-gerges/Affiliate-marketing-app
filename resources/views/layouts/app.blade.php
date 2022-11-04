@@ -31,18 +31,6 @@
 
     <link href='assets/plugins/toastr/toastr.min.css' rel='stylesheet'>
 
-
-
-
-
-
-
-    <!-- SLEEK CSS -->
-    <link id="sleek-css" rel="stylesheet" href="assets/css/sleek.css" />
-
-    <!-- FAVICON -->
-    <link href="assets/img/favicon.png" rel="shortcut icon" />
-
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 </head>
