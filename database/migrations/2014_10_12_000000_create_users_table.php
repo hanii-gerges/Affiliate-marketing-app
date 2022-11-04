@@ -18,10 +18,12 @@ return new class extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->string('phone_number')->unique();
-            $table->string('birth_date');
+            $table->string('birth_date')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->enum('role', ['admin', 'user']);
+            $table->enum('role', ['admin', 'user'])->default('user');
+            $table->string('referred_by')->nullable();
+            $table->string('affiliate_id')->unique();
             $table->rememberToken();
             $table->timestamps();
         });
