@@ -61,6 +61,7 @@ class UserController extends Controller
           DATE_FORMAT(created_at, '%b %e') AS 'day', 
           COUNT(*) AS 'user_count'
           FROM `users`
+          WHERE referred_by = '$affiliateId'
           GROUP BY DATE_FORMAT(created_at, '%b %e');
         "));
         return view('users.stats', compact(['users', 'totalUsers', 'totalVisitors']));
