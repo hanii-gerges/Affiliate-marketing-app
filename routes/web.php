@@ -4,8 +4,10 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\WalletController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Middleware\CheckReferral;
+use App\Http\Middleware\Admin;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,11 +30,7 @@ Route::middleware([CheckReferral::class])->post('/register', [RegisterController
 
 Route::prefix('admin')->group(function () {
   Route::get('/', [HomeController::class, 'index'])->name('home');
-  Route::resources([
-    'wallets' => WalletController::class,
-  ]);
-
-  Route::get('/users', [UserController::class, 'index'])->name('users.index');
-  Route::get('/users/referred', [UserController::class, 'referredUsers'])->name('users.referred');
-  Route::get('/users/stats', [UserController::class, 'stats'])->name('users.stats');
+  Route::middleware(['auth', Admin::class])->get('/users', [UserController::class, 'index'])->name('users.index');
+  Route::middleware('auth')->get('/users/referred', [UserController::class, 'referredUsers'])->name('users.referred');
+  Route::middleware('auth')->get('/users/stats', [UserController::class, 'stats'])->name('users.stats');
 });

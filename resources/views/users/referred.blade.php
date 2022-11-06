@@ -25,7 +25,7 @@
                             <td>{{ $user->id }}</td>
                             <td>{{ $user->name }}</td>
                             <td>{{ $user->email }}</td>
-                            <td class="d-none d-lg-table-cell">{{ $user->created_at }}</td>
+                            <td class="d-none d-lg-table-cell">{{ date('d/m/Y', strtotime($user->created_at)) }}</td>
                         </tr>
                     @endforeach
                 </tbody>

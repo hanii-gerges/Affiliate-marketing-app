@@ -48,15 +48,6 @@
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
-                </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                    aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
@@ -105,16 +96,11 @@
 
         <div class="wrapper">
 
-            <!--
-                ====================================
-                ——— LEFT SIDEBAR WITH FOOTER
-                =====================================
-              -->
             <aside class="left-sidebar bg-sidebar">
                 <div id="sidebar" class="sidebar sidebar-with-footer">
                     <!-- Aplication Brand -->
                     <div class="app-brand">
-                        <a href="/admin/index.php">
+                        <a href="">
                             <svg class="brand-icon" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid"
                                 width="30" height="33" viewBox="0 0 30 33">
                                 <g fill="none" fill-rule="evenodd">
@@ -130,47 +116,36 @@
 
                         <!-- sidebar menu -->
                         <ul class="nav sidebar-inner" id="sidebar-menu">
-                            <li class="">
-                                <a class="sidenav-item-link" href="/admin/news?page=1">
-                                    <i class="mdi mdi-newspaper"></i>
-                                    <span class="nav-text">
-                                        <div>
-                                            @if (Auth::user()->affiliate_id)
-                                                <input type="text" readonly="readonly"
-                                                    value="{{ url('/register') . '/?ref=' . Auth::user()->affiliate_id }}">
-                                            @endif
-                                        </div>
-                                    </span> <b class="caret"></b>
 
-                                </a>
-
-                            </li>
-                            <li class="">
-                                <a class="sidenav-item-link" href="{{ route('users.index') }}">
-                                    <i class="mdi mdi-page-next-outline"></i>
-                                    <span class="nav-text">Users</span> <b class="caret"></b>
-                                </a>
-                            </li>
+                            @if (Auth::user()->role == 'admin')
+                                <li class="">
+                                    <a class="sidenav-item-link" href="{{ route('users.index') }}">
+                                        <i class="mdi mdi-account"></i>
+                                        <span class="nav-text">Users</span>
+                                    </a>
+                                </li>
+                            @endif
                             <li class="">
                                 <a class="sidenav-item-link" href="{{ route('users.referred') }}">
-                                    <i class="mdi mdi-page-next-outline"></i>
-                                    <span class="nav-text">Referred users</span> <b class="caret"></b>
+                                    <i class="mdi mdi-account"></i>
+                                    <span class="nav-text">Referred users</span>
                                 </a>
 
                             </li>
+
                             <li class="">
                                 <a class="sidenav-item-link" href="{{ route('users.stats') }}">
-                                    <i class="mdi mdi-link-variant"></i>
-                                    <span class="nav-text">Statistics</span> <b class="caret"></b>
+                                    <i class="mdi  mdi mdi-chart-bar"></i>
+                                    <span class="nav-text">Statistics</span>
                                 </a>
 
                             </li>
-                            <li class="">
-                                <a class="sidenav-item-link" href="/admin/meta_contents/index.php?page=1">
-                                    <i class="mdi mdi-settings-outline"></i>
-                                    <span class="nav-text">Wallet</span> <b class="caret"></b>
+                            {{-- <li class="">
+                                <a class="sidenav-item-link" href="{{ route('transactions.index') }}">
+                                    <i class="mdi mdi-wallet"></i>
+                                    <span class="nav-text">Wallet</span>
                                 </a>
-                            </li>
+                            </li> --}}
                         </ul>
 
                     </div>
@@ -181,49 +156,7 @@
             </aside>
 
             <div class="page-wrapper">
-                <!-- Header -->
-                <header class="main-header " id="header">
-                    <nav class="navbar navbar-static-top navbar-expand-lg justify-content-between">
-                        <!-- Sidebar toggle button -->
-                        <button id="sidebar-toggler" class="sidebar-toggle">
-                        </button>
-                        <!-- search form -->
 
-
-                        <div class="navbar-right ">
-                            <ul class="nav navbar-nav">
-
-
-                                <!-- User Account -->
-                                <li class="dropdown user-menu">
-                                    <button href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
-                                        <img src="/images/user.png" class="user-image" alt="User Image" />
-                                    </button>
-                                    <ul class="dropdown-menu dropdown-menu-right">
-                                        <!-- User image -->
-                                        <li class="dropdown-header">
-                                            <img src="/images/user.png" class="user-image" alt="User Image" />
-                                            <div class="d-inline-block">
-                                            </div>
-                                        </li>
-
-
-                                        <li>
-                                            <i class="mdi mdi-settings"></i> Account Setting </a>
-                                        </li>
-
-                                        <li class="dropdown-footer">
-                                            <a href="/admin/users/logout.php"> <i class="mdi mdi-logout"></i> Log Out
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </div>
-                    </nav>
-
-
-                </header>
                 <main class="py-4">
                     <div class="container">
                         @yield('content')

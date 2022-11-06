@@ -24,6 +24,7 @@ return new class extends Migration
             $table->enum('role', ['admin', 'user'])->default('user');
             $table->string('referred_by')->nullable();
             $table->string('affiliate_id')->unique();
+            $table->string('image')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

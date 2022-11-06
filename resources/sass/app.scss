@@ -56,3 +56,7 @@
 @import 'compact-spacing';
 @import 'github';
 @import 'rtl';
+
+.card-table-border-none {
+  overflow-y: scroll;
+}

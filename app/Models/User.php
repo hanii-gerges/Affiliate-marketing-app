@@ -25,6 +25,7 @@ class User extends Authenticatable
         'birth_date',
         'referred_by',
         'affiliate_id',
+        'image',
     ];
 
     /**

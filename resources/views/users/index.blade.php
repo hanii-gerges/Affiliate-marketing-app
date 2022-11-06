@@ -17,6 +17,7 @@
                         <th>Name</th>
                         <th>Email</th>
                         <th class="d-none d-lg-table-cell">Joined at</th>
+                        <th class="d-none d-lg-table-cell">Total referrals</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -25,7 +26,7 @@
                             <td>{{ $user->id }}</td>
                             <td>{{ $user->name }}</td>
                             <td>{{ $user->email }}</td>
-                            <td class="d-none d-lg-table-cell">{{ $user->created_at }}</td>
+                            <td class="d-none d-lg-table-cell">{{ date('d/m/Y', strtotime($user->created_at)) }}</td>
                             <td>{{ $user->user_count }}</td>
                         </tr>
                     @endforeach
